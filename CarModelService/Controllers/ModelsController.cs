@@ -11,13 +11,19 @@ namespace CarModelService.Controllers
     [Route("api/models")]
     public class ModelsController : ControllerBase
     {
-
         private readonly ILogger<ModelsController> _logger;
 
         public ModelsController(ILogger<ModelsController> logger)
         {
             _logger = logger;
         }
+
+        /// <summary>
+        /// Retrieve All Models For a Specific Car.
+        /// </summary>
+        /// <param name="modelyear">An integer representing the year of the model</param>
+        /// <param name="make">A string representing the make of the model</param>
+        /// <returns>All Models For a Specific Car</returns>
         [HttpGet]
         public async Task<ActionResult<IEnumerable<string>>> GetModels(int modelyear, string make)
         {
@@ -29,6 +35,7 @@ namespace CarModelService.Controllers
 
             var models = await GetModelsForMakeIdYearAsync(makeId, modelyear);
 
+            //if no models for the car or the year is wrong 
             if (models.Models.Count<0)
             {
                 return Ok($"No Data Found");
@@ -74,7 +81,6 @@ namespace CarModelService.Controllers
             }
 
         }
-
         private async Task<CarModels> GetModelsForMakeIdYearAsync(int? makeId, int modelyear)
         {
 
