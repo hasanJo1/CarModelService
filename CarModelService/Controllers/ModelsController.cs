@@ -46,6 +46,11 @@ namespace CarModelService.Controllers
         }
 
         #region  private
+        /// <summary>
+        /// this funcation to get Make Id from the datebeas 
+        /// </summary>
+        /// <param name="make"></param>
+        /// <returns>Make Id</returns>
         private int? GetMakeId(string make)
         {
             try
@@ -83,6 +88,12 @@ namespace CarModelService.Controllers
             }
 
         }
+        /// <summary>
+        /// this funcation to get car models 
+        /// </summary>
+        /// <param name="makeId">make id </param>
+        /// <param name="modelyear">year of model</param>
+        /// <returns>all model for the make and year model </returns>
         private async Task<CarModels> GetModelsForMakeIdYearAsync(int? makeId, int modelyear)
         {
 
