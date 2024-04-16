@@ -1,6 +1,7 @@
 ﻿using CarModelService.Model;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using Serilog;
 using System.Data;
 using System.Data.SqlClient;
 using System.Reflection;
@@ -75,8 +76,9 @@ namespace CarModelService.Controllers
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Log.Error(ex, "An error occurred");
                 return null;
             }
 
@@ -117,8 +119,9 @@ namespace CarModelService.Controllers
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Log.Error(ex, "An error occurred");
                 return new CarModels();
 
             }
